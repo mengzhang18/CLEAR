@@ -1,0 +1,37 @@
+[
+    {
+        "index": 0,
+        "db_id": "world_1",
+        "ambig_type": "column",
+        "db_file": "column/world_1/world_1.sqlite",
+        "question": "What is the continent name which Anguilla belongs to?",
+        "schema_without_content": "city : countrycode , name , population , district , id  | sqlite_sequence : name , seq  | country : capital , headofstate , localname , lifeexpectancy , gnp , gnpold , continent_name , code , surfacearea , population , code2 , mainland , region , indepyear , governmentform , name  | countrylanguage : language , percentage , isofficial , countrycode",
+        "schema_with_content": "city : countrycode (\"DMA\", \"NER\", \"NLD\"), name (\"Scottsdale\", \"Taxco de AlarcÃ³n\", \"Wellington\"), population (89423, 245772, 315382), district (\"Borsod-AbaÃºj-ZemplÃ©n\", \"West Java\", \"Midi-PyrÃ©nÃ©es\"), id (3788, 3629, 340) | sqlite_sequence : name (\"city\"), seq (4079) | country : capital (2973, 3243, 3212), headofstate (\"Hamad ibn Isa al-Khalifa\", None, \"Vicente Fox Quesada\"), localname (\"MÃ©xico\", \"Makedonija\", \"Sverige\"), lifeexpectancy (77.6, 77.0, 54.8), gnp (340238.0, 6041.0, 211860.0), gnpold (573.0, 360478.0, 2141.0), continent_name (\"Europe\", \"Oceania\", \"South America\"), code (\"VCT\", \"SYR\", \"NFK\"), surfacearea (774815.0, 96.0, 1862.0), population (453000, 50456000, 9586000), code2 (\"AD\", \"ID\", \"SK\"), mainland (\"Europe\", \"Oceania\", \"South America\"), region (\"Eastern Europe\", \"Polynesia\", \"Polynesia\"), indepyear (836, 1143, 1581), governmentform (\"Islamic Emirate\", \"Occupied by Marocco\", \"Constitutional Monarchy\"), name (\"French Polynesia\", \"Iran\", \"Chad\") | countrylanguage : language (\"Kanem-bornu\", \"Dari\", \"Yao\"), percentage (8.2, 14.0, 11.4), isofficial (\"T\", \"F\"), countrycode (\"SYC\", \"UMI\", \"LBY\")",
+        "ambiguous_queries": [
+            "select mainland from country where name = 'Anguilla'",
+            "select continent_name from country where name = 'Anguilla'"
+        ],
+        "gold_ambiguity": {
+            "match": "{\"continent\": [{\"country\": [\"mainland\"]}, {\"country\": [\"continent_name\"]}]}",
+            "query": "{}"
+        },
+        "clarification_context": "\"continent\" refers to the schema \"country\".\"continent_name\"",
+        "clear_ambiguity": "{\"continent\": {\"country\": [\"continent_name\"]}}",
+        "gold_query": "select continent_name from country where name = 'Anguilla'",
+        "ambiguity_mapping": {
+            "query": "{}",
+            "match": "{\"continent name\": [{\"country\": [\"mainland\"]}, {\"country\": [\"continent_name\"]}]}"
+        },
+        "msg": {
+            "continent name": {
+                "type": 0,
+                "content": "{\"continent name\": {\"country\": [\"continent_name\"]}}"
+            }
+        },
+        "ambiguity_clarification": "{\"continent name\": {\"country\": [\"continent_name\"]}}",
+        "dq_tmp": "What is the continent name which Anguilla belongs to? ({\"continent name\": {\"country\": [\"continent_name\"]}})",
+        "dq": "What is the continent name (country.continent_name) which Anguilla belongs to?",
+        "schema_without_content_dq": "city : countrycode , name , population , district , id | sqlite_sequence : name , seq | country : capital , headofstate , localname , lifeexpectancy , gnp , gnpold , continent_name , code , surfacearea , population , code2 , region , indepyear , governmentform , name | countrylanguage : language , percentage , isofficial , countrycode",
+        "schema_with_content_dq": "city : countrycode (\"DMA\", \"NER\", \"NLD\") , name (\"Scottsdale\", \"Taxco de AlarcÃ³n\", \"Wellington\") , population (89423, 245772, 315382) , district (\"Borsod-AbaÃºj-ZemplÃ©n\", \"West Java\", \"Midi-PyrÃ©nÃ©es\") , id (3788, 3629, 340) | sqlite_sequence : name (\"city\") , seq (4079) | country : capital (2973, 3243, 3212) , headofstate (\"Hamad ibn Isa al-Khalifa\", None, \"Vicente Fox Quesada\") , localname (\"MÃ©xico\", \"Makedonija\", \"Sverige\") , lifeexpectancy (77.6, 77.0, 54.8) , gnp (340238.0, 6041.0, 211860.0) , gnpold (573.0, 360478.0, 2141.0) , continent_name (\"Europe\", \"Oceania\", \"South America\") , code (\"VCT\", \"SYR\", \"NFK\") , surfacearea (774815.0, 96.0, 1862.0) , population (453000, 50456000, 9586000) , code2 (\"AD\", \"ID\", \"SK\") , mainland (\"Europe\", \"Oceania\", \"South America\") , region (\"Eastern Europe\", \"Polynesia\", \"Polynesia\") , indepyear (836, 1143, 1581) , governmentform (\"Islamic Emirate\", \"Occupied by Marocco\", \"Constitutional Monarchy\") , name (\"French Polynesia\", \"Iran\", \"Chad\") | countrylanguage : language (\"Kanem-bornu\", \"Dari\", \"Yao\") , percentage (8.2, 14.0, 11.4) , isofficial (\"T\", \"F\") , countrycode (\"SYC\", \"UMI\", \"LBY\")"
+    }
+]
